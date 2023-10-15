@@ -7,9 +7,6 @@ import { Observable, of } from 'rxjs';
 })
 export class MediaService {
 
-  private devHoursUrl = 'URL_AQUÍ'; 
-  private proxySizeUrl = 'OTRA_URL_AQUÍ'; 
-
   constructor(private http: HttpClient) { } 
 
   getDevHours(): Observable<any> {
