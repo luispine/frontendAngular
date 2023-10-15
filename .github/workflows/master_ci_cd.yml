@@ -15,12 +15,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Setup Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -yq --no-install-recommends \
+            fonts-liberation \
+            libappindicator3-1 \
+            libasound2 \
+            libatk-bridge2.0-0 \
+            libnspr4 \
+            libnss3 \
+            libxss1 \
+            lsb-release \
+            xdg-utils \
+            libappindicator1 \
+            libindicator7 \
+            libgtk-3-0
+          wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          sudo apt-get -fy install
+      
       - name: Use Node.js 16.x
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
+      
       - name: CI
         run: npm ci
+      
       - name: Test
         run: |
           npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
