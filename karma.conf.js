@@ -33,15 +33,14 @@ module.exports = function (config) {
       ]
     },
     reporters: ['progress', 'kjhtml'],
-    browsers: ['Chrome'],
-    browsers: ['ChromeHeadlessCI'],
-      customLaunchers: {
-        ChromeHeadlessCI: {
-          base: 'ChromeHeadless',
-          flags: ['--no-sandbox', '--disable-gpu']
-        }
-      },
-      singleRun: false,
+    browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessNoSandbox'],
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox', '--disable-gpu']
+      }
+    },
+    singleRun: false,
     restartOnFileChange: true,
     failOnEmptyTestSuite: false
   });
